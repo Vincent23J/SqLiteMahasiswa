@@ -60,12 +60,28 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
     public Cursor bacaDataMahasiswa(){
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT * FROM " + TABLE_NAME;
+        String query = "SELECT * FROM " + TABLE_NAME + " ORDER BY " + FIELD_NPM;
 
         Cursor varCursor = null;
         if(db!=null){
             varCursor = db.rawQuery(query, null);
         }
         return varCursor;
+    }
+    public long ubahData(String id,String npm, String nama, String prodi){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(FIELD_NPM, npm);
+        cv.put(FIELD_NAMA, nama);
+        cv.put(FIELD_PRODI, prodi);
+
+        long eksekusi = db.update(TABLE_NAME, cv, "id = ?", new String[]{id});
+        return eksekusi;
+    }
+    public long hapusData(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        long eksekusi = db.delete(TABLE_NAME, "id = ?", new String[]{id});
+        return eksekusi;
     }
 }

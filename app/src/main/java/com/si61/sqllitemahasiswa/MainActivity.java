@@ -62,11 +62,12 @@ public class MainActivity extends AppCompatActivity {
 
         sqLiteToArrayList();
 
-        //adMahasiswa = new AdapterMahasiswa(MainActivity.this, arrId, arrNpm, arrNama, arrProdi);
-        rvMahasiswa.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+        rvMahasiswa = findViewById(R.id.rv_mahasiswa);
+
+        adMahasiswa = new AdapterMahasiswa(MainActivity.this, arrId, arrNpm, arrNama, arrProdi);
+
         rvMahasiswa.setAdapter(adMahasiswa);
-
-
+        rvMahasiswa.setLayoutManager(new LinearLayoutManager(MainActivity.this));
     }
 
     @Override
